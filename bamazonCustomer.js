@@ -18,3 +18,17 @@ var connection = mysql.createConnection({
     password: "rootroot",
     database: "bamazon"
 });
+
+connection.connect(function(err){
+    if(err) throw err
+    console.log("connected")
+    loadProducts()
+    connection.end()
+});
+
+function loadProducts(){
+    connection.query("SELECT * FROM products", function(err, res){
+        if(err) throw err
+        console.table(res)
+    })
+}
