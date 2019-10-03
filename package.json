@@ -1,0 +1,25 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Bamazon",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgoderis/bamazon.git"
+  },
+  "author": "ryan goderis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rgoderis/bamazon/issues"
+  },
+  "homepage": "https://github.com/rgoderis/bamazon#readme",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "color": "^3.1.2",
+    "inquirer": "^7.0.0",
+    "mysql": "^2.17.1"
+  }
+}
