@@ -160,6 +160,6 @@ function addProduct(){
                 addProduct()
             }
         })
-    })
+    });
 }
 
