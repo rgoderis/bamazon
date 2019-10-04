@@ -143,8 +143,18 @@ function addProduct(){
         ]).then(function(answers){
             // check to see if productPrice and productInventory are a number
             if(!isNaN(parseInt(answers.productPrice)) && !isNaN(parseInt(answers.productInventory))){
-                console.log("Product Added")
-                bamazonManager();
+                connection.query("INSERT INTO products SET?",
+                    {
+                        product_name: answers.productName,
+                        department: answers.productDepartment,
+                        price: answers.productPrice,
+                        stock_quantity: answers.productInventory
+                    }, function(err, res){
+                        if(err) throw err
+                        console.log("Product Added")
+                        bamazonManager();
+                    })
+
             } else{
                 console.log("Please enter a valid price and inventory")
                 addProduct()
