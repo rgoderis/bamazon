@@ -76,15 +76,34 @@ function addInventory(){
             name: "inventory"
         }
     ]).then(function(answers){
+        // check to see if answers.inventory is a number
         if(isNaN(answers.inventory)){
             console.log("Please enter a valid inventory number")
             addInventory();
+        // check to see if answers.productId is a number
         } else if(isNaN(answers.productId)){
             console.log("Please enter a valid productId")
             addInventory();
         } else{
-            console.log("Inventory added")
-            bamazonManager();
+            // retrieve current inventory
+            connection.query("SELECT * FROM products WHERE ?", {id: answers.productId}, function(err, res){
+                if(err) throw err
+                var newInventory = parseInt(answers.inventory)+res[0].stock_quantity;
+                 // update inventory
+                connection.query("UPDATE products SET ? WHERE ?",
+                [
+                    {
+                        stock_quantity: newInventory
+                    },
+                    {
+                        id: answers.productId
+                    }
+                ], function(err){
+                    if(err) throw err
+                    console.log("Inventory added")
+                    bamazonManager();
+                })
+            })
         }
     })
 }
