@@ -43,3 +43,12 @@ function bamazonManager(){
         }
     });
 }
+
+// function to view all products
+function view(){
+    connection.query("SELECT * FROM products", function(err, res){
+        if(err) throw err
+        console.table(res);
+        bamazonManager();
+    })
+}
