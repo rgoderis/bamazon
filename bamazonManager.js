@@ -140,9 +140,15 @@ function addProduct(){
                 message: "Enter the Inventory Amount",
                 name: "productInventory"
             }
-    
         ]).then(function(answers){
-            console.log("Hello")
+            // check to see if productPrice and productInventory are a number
+            if(!isNaN(parseInt(answers.productPrice)) && !isNaN(parseInt(answers.productInventory))){
+                console.log("Product Added")
+                bamazonManager();
+            } else{
+                console.log("Please enter a valid price and inventory")
+                addProduct()
+            }
         })
     })
 }
