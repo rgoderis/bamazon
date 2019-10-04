@@ -88,7 +88,7 @@ function addInventory(){
             // retrieve current inventory
             connection.query("SELECT * FROM products WHERE ?", {id: answers.productId}, function(err, res){
                 if(err) throw err
-                var newInventory = parseInt(answers.inventory)+res[0].stock_quantity;
+                let newInventory = parseInt(answers.inventory)+res[0].stock_quantity;
                  // update inventory
                 connection.query("UPDATE products SET ? WHERE ?",
                 [
@@ -105,6 +105,45 @@ function addInventory(){
                 })
             })
         }
+    })
+}
+
+// function to add a new product
+function addProduct(){
+    connection.query("SELECT department FROM products", function(err, res){
+        if(err) throw err
+        const departments = [];
+        for(var i = 0; i<res.length; i++){
+            if(departments.indexOf(res[i].department)===-1){
+                departments.push(res[i].department)
+            }
+        }
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "Enter the Product Name",
+                name: "productName"
+            },
+            {
+                type: "list",
+                message: "Select the Product Department",
+                choices: departments,
+                name: "productDepartment"
+            },
+            {
+                type: "input",
+                message: "Enter the Product Price",
+                name: "productPrice"
+            },
+            {
+                type: "input",
+                message: "Enter the Inventory Amount",
+                name: "productInventory"
+            }
+    
+        ]).then(function(answers){
+            console.log("Hello")
+        })
     })
 }
 
