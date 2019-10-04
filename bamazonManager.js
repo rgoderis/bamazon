@@ -52,3 +52,12 @@ function view(){
         bamazonManager();
     })
 }
+
+// function to view all products with low inventory
+function lowInventory(){
+    connection.query("SELECT * FROM products WHERE stock_quantity < 10", function(err, res){
+        if(err) throw err
+        console.table(res);
+        bamazonManager();
+    })
+}
