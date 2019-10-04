@@ -14,3 +14,32 @@ connection.connect(function(err){
     console.log("connected");
     bamazonManager()
 });
+
+function bamazonManager(){
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "please select what you would like to do",
+            choices: ["View All Products", "View Low Inventory", "Add to Inventory", "Add New Product", "Exit"],
+            name: "startChoice"
+        }
+    ]).then(function(answer){
+        switch(answer.startChoice){
+            // view products for sale
+            case "View All Products":
+                return view();
+            // view low inventory
+            case "View Low Inventory":
+                return lowInventory();
+            // add to inventory
+            case "Add to Inventory":
+                return addInventory();
+            // add new product
+            case "Add New Product":
+                return addProduct();
+            // exit bamazonManager
+            case "Exit":
+                return connection.end();
+        }
+    });
+}
