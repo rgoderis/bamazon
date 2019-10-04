@@ -61,3 +61,31 @@ function lowInventory(){
         bamazonManager();
     })
 }
+
+// function to add to inventory
+function addInventory(){
+    inquirer.prompt([
+        {
+            type:"input",
+            message: "Please enter the id of the product you would like to add inventory to",
+            name: "productId"
+        },
+        {
+            type: "input",
+            message: "How much inventory would you like to add?",
+            name: "inventory"
+        }
+    ]).then(function(answers){
+        if(isNaN(answers.inventory)){
+            console.log("Please enter a valid inventory number")
+            addInventory();
+        } else if(isNaN(answers.productId)){
+            console.log("Please enter a valid productId")
+            addInventory();
+        } else{
+            console.log("Inventory added")
+            bamazonManager();
+        }
+    })
+}
+
