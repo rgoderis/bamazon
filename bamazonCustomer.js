@@ -64,12 +64,16 @@ function buyProducts(){
             if(res[0].stock_quantity >= parseInt(answers.purchaseAmount)){
                 //  subtract stock_quantity by answers.purchaseAmount
                 var newQuantity = res[0].stock_quantity - parseInt(answers.purchaseAmount)
-                var totalSold = parseInt(answers.puschaseAmount) * res[0].price
+                var totalSold = parseInt(answers.purchaseAmount) * res[0].price
+                var currentSales = res[0].product_sales
+                console.log("Price "+res[0].price)
+                console.log("purchase amount "+ parseInt(answers.purchaseAmount))
                 console.log(totalSold)
                 connection.query("UPDATE products SET ? WHERE ?",
                 [
                         {
-                            stock_quantity: newQuantity
+                            stock_quantity: newQuantity,
+                            product_sales: totalSold + currentSales
                         },
                         {
                             id: answers.productId
