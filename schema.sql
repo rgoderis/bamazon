@@ -23,4 +23,4 @@ VALUES("AUTO", 1000000), ("Home and Garden", 1000), ("Electronics", 5000), ("Boo
 INSERT INTO products(product_name, department, price, stock_quantity)
 VALUES("Corvette", "AUTO", 50000.00, 5), ("Garden Hose", "Home and Garden", 20.00, 100), ("PS4", "Electronics", 249.99, 50), ("Uncharted 4", "Electronics", 29.99, 100), ("Avengers Endgame", "Electronics", 19.99, 100), ("The Lord of the Rings: Fellowship of the Ring", "Books", 9.99, 100), ("Cataan", "Toys and Games", 40.00, 100), ("Pandemic", "Toys and Games", 35.00, 100), ("Shovel", "Home and Garden", 15.98, 100),("The Lord of the Rings: Return of the King", "Books", 12.99, 100);
 ALTER TABLE products
-ADD COLUMN product_sales DECIMAL DEFAULT 0 (10, 2);
+ADD COLUMN product_sales DECIMAL(10, 2) DEFAULT 0;

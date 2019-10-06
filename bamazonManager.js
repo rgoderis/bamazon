@@ -110,14 +110,13 @@ function addInventory(){
 
 // function to add a new product
 function addProduct(){
-    connection.query("SELECT department FROM products", function(err, res){
+    connection.query("SELECT department_name FROM departments", function(err, res){
         if(err) throw err
         const departments = [];
         for(var i = 0; i<res.length; i++){
-            if(departments.indexOf(res[i].department)===-1){
-                departments.push(res[i].department)
-            }
+            departments.push(res[i].department_name)
         }
+        console.log(departments)
         inquirer.prompt([
             {
                 type: "input",
