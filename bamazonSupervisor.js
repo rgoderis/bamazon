@@ -32,5 +32,13 @@ function bamazonSupervisor(){
             case "Exit":
                 return connection.end();
         }
-    })
+    });
 }
+
+function productSales(){
+    // calculate product sales by department
+    connection.query("SELECT departments.department_id, products.department, departments.over_head_costs, SUM(products.product_sales) as product_sales, SUM(products.product_sales) - departments.over_head_costs as total_profit FROM products INNER JOIN departments ON products.department = departments.department_name GROUP BY departments.department_id", function(err, res){
+        if(err) throw err
+        console.table(res)
+    }) 
+};
