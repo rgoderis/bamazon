@@ -41,7 +41,7 @@ function productSales(){
         if(err) throw err
         console.table(res)
         bamazonSupervisor();
-    }) 
+    }); 
 };
 
 function newDepartment(){
