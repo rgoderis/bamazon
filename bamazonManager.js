@@ -116,7 +116,6 @@ function addProduct(){
         for(var i = 0; i<res.length; i++){
             departments.push(res[i].department_name)
         }
-        console.log(departments)
         inquirer.prompt([
             {
                 type: "input",
